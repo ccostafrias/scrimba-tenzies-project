@@ -37,7 +37,7 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 50px;
     align-items: center;
     justify-content: center;
 }
@@ -76,10 +76,15 @@ header > h1 {
 }
 
 .die.active {
-    background-color: green;
+    background-color: #59E391;
 }
 
 .roll-bttn {
-    font-size: 2rem;
+    font-size: 1.45rem;
+    color: white;
+    padding: .6em 1.4em;
+    border-radius: 5px;
     background-color: #5035FF;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }

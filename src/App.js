@@ -3,20 +3,64 @@ import React, { useEffect, useState } from "react"
 import Die from "./Die"
 
 export default function App() {
-    const [dice, setDices] = useState(
-        Array.from({length: 10})
-            .map(die => random(1, 10))
+    const [dice, setDice] = useState(
+        resetDice()
     )
 
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min) + min)
+    function resetDice(length = 10) {
+        return (
+            Array.from({length})
+            .map((die, i) => {
+                return {
+                    index: i,
+                    value: random(1, 10),
+                    locked: false
+                }
+            })
+        )
+    }
+
+    function random(min, max, last) {
+        const newNum = Math.floor(Math.random() * (max - min) + min)
+        return newNum === last ? random(max, min, last) : newNum
+    }
+
+    function lockDie(index) {
+        console.log(index)
+        setDice(prevDice => {
+            return prevDice.map(die => {
+                return index === die.index ? {...die, locked: !die.locked} : die
+            })
+        })
+    }
+
+    function rerollDice() {
+        setDice(prevDice => {
+            return prevDice.map(die => {
+                return !die.locked ? {...die, value: random(1, 10, die.value)} : die
+            })
+        })
+    }
+
+    function resetGame() {
+        setDice(resetDice())
     }
 
     const diceElements = dice.map(die => {
-        return <Die die={die}/>
+        return (
+            <Die 
+                key={die.index}
+                die={die.value}
+                index={die.index}
+                locked={die.locked}
+                lockDie={lockDie}
+            />
+        )
     })
 
-    console.log(diceElements)
+    const allDone = 
+        dice.every(die => die.value === dice[0].value) &&
+        dice.every(die => die.locked)
     
     return (
         <>
@@ -30,7 +74,12 @@ export default function App() {
                 </div>
             </main>
             <footer>
-                <button className="roll-bttn">Roll</button>
+                <button
+                    className="roll-bttn"
+                    onClick={allDone ? resetGame : rerollDice}
+                >
+                    {allDone ? "Reset Game" : "Roll"}
+                </button>
             </footer>
         </>
     )
