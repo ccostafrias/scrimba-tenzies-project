@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/scrimba-tenzies-project/static/css/main.e3fa5d37.css",
-    "main.js": "/scrimba-tenzies-project/static/js/main.5c4e944d.js",
+    "main.css": "/scrimba-tenzies-project/static/css/main.83d0b975.css",
+    "main.js": "/scrimba-tenzies-project/static/js/main.063ddf65.js",
     "index.html": "/scrimba-tenzies-project/index.html",
-    "main.e3fa5d37.css.map": "/scrimba-tenzies-project/static/css/main.e3fa5d37.css.map",
-    "main.5c4e944d.js.map": "/scrimba-tenzies-project/static/js/main.5c4e944d.js.map"
+    "main.83d0b975.css.map": "/scrimba-tenzies-project/static/css/main.83d0b975.css.map",
+    "main.063ddf65.js.map": "/scrimba-tenzies-project/static/js/main.063ddf65.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3fa5d37.css",
-    "static/js/main.5c4e944d.js"
+    "static/css/main.83d0b975.css",
+    "static/js/main.063ddf65.js"
   ]
 }
