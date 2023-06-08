@@ -13,20 +13,19 @@ export default function App() {
             .map((die, i) => {
                 return {
                     index: i,
-                    value: random(1, 10),
+                    value: randomDie(),
                     locked: false
                 }
             })
         )
     }
 
-    function random(min, max, last) {
-        const newNum = Math.floor(Math.random() * (max - min) + min)
-        return newNum === last ? random(max, min, last) : newNum
+    function randomDie(last) {
+        const newNum = Math.floor(Math.random() * 6 + 1)
+        return newNum === last ? randomDie(last) : newNum
     }
 
     function lockDie(index) {
-        console.log(index)
         setDice(prevDice => {
             return prevDice.map(die => {
                 return index === die.index ? {...die, locked: !die.locked} : die
@@ -37,7 +36,7 @@ export default function App() {
     function rerollDice() {
         setDice(prevDice => {
             return prevDice.map(die => {
-                return !die.locked ? {...die, value: random(1, 10, die.value)} : die
+                return !die.locked ? {...die, value: randomDie(die.value)} : die
             })
         })
     }
@@ -64,23 +63,21 @@ export default function App() {
     
     return (
         <>
-            <header>
-                <h1>Tenzies</h1>
-                <p>Roll until all dice are the same. Click each die to freeze it as its current value between rolls.</p>
-            </header>
             <main>
+                <header>
+                    <h1>Tenzies</h1>
+                    <p>Roll until all dice are the same. Click each die to freeze it as its current value between rolls.</p>
+                </header>
                 <div className="dice-container">
-                {diceElements}
+                    {diceElements}
                 </div>
-            </main>
-            <footer>
                 <button
                     className="roll-bttn"
                     onClick={allDone ? resetGame : rerollDice}
                 >
                     {allDone ? "Reset Game" : "Roll"}
                 </button>
-            </footer>
+            </main>
         </>
     )
 }

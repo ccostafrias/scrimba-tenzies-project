@@ -15,31 +15,32 @@ button {
     background: none;
 }
 
-html {
-    background-color: #0B2434;
+html, body, #root {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
+
+    font-family: 'Karla', sans-serif;
 }
 
 body {
-    background-color: #F5F5F5;
-    font-family: 'Karla', sans-serif;
-
-    width: 90%;
-    height: fit-content;
-    max-width: 800px;
-    margin: auto;
-    padding: 2em;
-    border-radius: 10px;
+    background-color: #0B2434;
 }
 
-#root {
+main {
+    background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
     gap: 50px;
     align-items: center;
     justify-content: center;
+    width: 90%;
+    max-width: 720px;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .2);
 }
 
 header {
@@ -64,19 +65,36 @@ header > h1 {
 .die {
     aspect-ratio: 1/1;
     width: 1.5em;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.25rem;
     font-weight: bold;
     background-color: white;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     cursor: pointer;
+    user-select: none;
+}
+
+.die:active {
+    position: relative;
+    top: 5px;
+    box-shadow: none;
 }
 
 .die.active {
     background-color: #59E391;
+}
+
+.die-dot {
+    aspect-ratio: 1/1;
+    width: 10px;
+    background-color: black;
+    border-radius: 50%;
+
+    position: absolute;
 }
 
 .roll-bttn {
